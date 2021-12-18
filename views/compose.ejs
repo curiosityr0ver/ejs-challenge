@@ -1,0 +1,16 @@
+<!DOCTYPE ejs>
+<%- include("partials/header"); %>
+    <h1>Compose</h1>
+    <form action="/compose" method="post">
+        <div class="form-group">
+            <label class="form-label" for="composeTitle">Title</label>
+            <input class="form-control" type="text" name="composeTitle">
+            <br>
+            <label class="form-label" for="composePost">Post</label>
+            <textarea class="form-control" name="composePost" cols="30" rows="5"></textarea>
+            <br>
+            <button class="btn btn-primary" type="submit" name="submitButton"> Submit</button>
+        </div>
+    </form>
+
+    <%- include("partials/footer"); %>
