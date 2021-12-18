@@ -25,7 +25,7 @@ app.get("/", function (req, res) {
   });
 })
 
-app.get("/home/params", function (req, res) {
+app.get("/home/:params", function (req, res) {
   res.render("blog", {
     postlist: postlist,
     index: req.params
