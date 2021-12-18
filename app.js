@@ -26,6 +26,20 @@ app.get("/", function (req, res) {
 })
 
 app.get("/home/:params", function (req, res) {
+  var found = -1;
+  for (let i = 0; i < postlist.length; i++) {
+    if (postlist[i].head == req.params.params) {
+      found = i;
+      break;
+    } 
+  }
+  if (found >= 0) {
+    res.render("blog", { postlist: postlist, index: found + 1 }
+    )
+  } else {
+    res.send("oops !");
+  }
+  
   res.render("blog", {
     postlist: postlist,
     index: req.params.params
