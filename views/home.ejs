@@ -1,8 +1,10 @@
 <%- include("partials/header"); %>
     <h1>Home</h1>
     <p>
-        <i><%= headpara %></i>
-        
+        <i>
+            <%= headpara %>
+        </i>
+
     </p>
     <% for (let i=0;i < postlist.length;i++) { %>
         <h1>
@@ -10,8 +12,9 @@
         </h1>
         <p>
             <i>
-                <%= postlist[i].body %>
+                <%= postlist[i].body.substring(0, 99) + "..." %>
             </i>
+            <a href=<%="/blogs/" + postlist[i].head %> >readmore</a>
         </p>
         <% } %>
             <%- include("partials/footer"); %>
