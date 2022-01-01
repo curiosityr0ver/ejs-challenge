@@ -19,32 +19,56 @@ var postlist = [];
 
 // Database prerequisites
 const paraSchema = {
-  name: String,
-  content: String
+  head: String,
+  body: String
 }
 const Para = mongoose.model("Para", paraSchema);
 
 const alpha = new Para(
   {
-    name: "Running",
-    content: "Bhaago BC"
+    head: "Running",
+    body: "Bhaago BC"
   }
 )
 
 const beta = new Para(
   {
-    name: "Eating",
-    content: "Khao MC"
+    head: "Eating",
+    body: "Khao MC"
   }
 )
 const gamma = new Para(
   {
-    name: "Shitting",
-    content: "Hag de BC"
+    head: "Shitting",
+    body: "Hag de BC"
   }
 )
 
+// Adding above default paras if database is empty
+Para.count((err, count) => {
+  if (count < 3) {
+    Para.insertMany([alpha, beta, gamma], (err) => {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log("Succesfully inserted default paragraphs.")
+      }
+    })
+  }
+})
+
+
+
 app.get("/", function (req, res) {
+
+  // Adding database items to postlist array
+  Para.find({}, (err, founditems) => {
+    founditems.forEach(element => {
+      postlist.push(element)
+    });
+
+  })
+
   res.render("home", {
     postlist: postlist,
     headpara: homeStartingContent,
@@ -93,11 +117,7 @@ app.get("/compose", function (req, res) {
 })
 
 app.post("/compose", function (req, res) {
-  var postItem = {
-    head: req.body.composeTitle,
-    body: req.body.composePost
-  }
-  postlist.push(postItem);
+  Para.create({ head: req.body.composeTitle, body: req.body.composePost }, (err, doc) => { })
   res.redirect("/");
 })
 
