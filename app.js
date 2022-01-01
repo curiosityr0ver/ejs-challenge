@@ -72,9 +72,6 @@ app.get("/", function (req, res) {
     headpara: homeStartingContent,
   });
 })
-app.post("/", function (req, res) {
-  console.log(req.body);
-})
 
 app.get("/blogs/:params", function (req, res) {
   var str = req.params.params;
