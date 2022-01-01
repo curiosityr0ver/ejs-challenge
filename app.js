@@ -57,8 +57,6 @@ Para.count((err, count) => {
   }
 })
 
-
-
 app.get("/", function (req, res) {
 
   // Adding database items to postlist array
@@ -117,13 +115,9 @@ app.get("/compose", function (req, res) {
 })
 
 app.post("/compose", function (req, res) {
-  Para.create({ head: req.body.composeTitle, body: req.body.composePost }, (err, doc) => { })
+  Para.create({ head: req.body.composeTitle, body: req.body.composePost }, (err, doc) => {})
   res.redirect("/");
 })
-
-
-
-
 
 app.listen(3000, function () {
   console.log("Server started on port 3000");
