@@ -58,11 +58,11 @@ Para.count((err, count) => {
   }
 })
 
-postlist = [];
+
 app.get("/", function (req, res) {
 
   // Adding database items to postlist array
-
+  postlist = [];
   Para.find({}, (err, founditems) => {
     founditems.forEach(element => {
       postlist.push(element)
