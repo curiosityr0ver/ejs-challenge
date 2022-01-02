@@ -31,5 +31,19 @@
 .footer p {
 	margin-top: 25px;
 	font-size: 12px;
-  color: #fff;
+    color: #fff;
+}
+
+#delete {
+    height: 40px;
+    transition-duration: 0.15s;
+    border-radius: 30px;
+}
+#delete:hover {
+    height: 42px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+input, button, submit
+{
+  all: unset;
 }

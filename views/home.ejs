@@ -3,17 +3,25 @@
     <p>
         <i>
             <%= headpara %>
-        </i>
-    </p>
-    <% for (let i=0;i < postlist.length;i++) { %>
-        <h1>
-            <%=postlist[i].head %>
-        </h1>
-        <p>
-            <i>
-                <%= postlist[i].body.substring(0, 99) + "..." %>
-            </i>
-            <a href=<%="/blogs/" + postlist[i].head %> >readmore</a>
-        </p>
-        <% } %>
- <%- include("partials/footer"); %>
+                <% for (let i=0;i < postlist.length;i++) { %>
+
+                    
+                    <form action="/" method="post">
+                        <h1>
+                            <%=postlist[i].head %>
+                            <button name="delete" value=<%=postlist[i].head %>><img id="delete"
+                                    src="https://cdn4.iconfinder.com/data/icons/controls-add-on-flat/48/Contols_-_Add_On-35-512.png"
+                                    alt=""></button>
+                        </h1>
+                        
+                    </form>
+
+                    <p>
+                        <i>
+                            <%= postlist[i].body.substring(0, 99) + "..." %>
+                        </i>
+
+                        <a href=<%="/blogs/" + postlist[i].head %> >readmore</a>
+                    </p>
+                    <% } %>
+                        <%- include("partials/footer"); %>

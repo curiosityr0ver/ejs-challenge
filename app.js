@@ -61,18 +61,39 @@ Para.count((err, count) => {
 
 app.get("/", function (req, res) {
 
-  // Adding database items to postlist array
-  postlist = [];
-  Para.find({}, (err, founditems) => {
-    founditems.forEach(element => {
-      postlist.push(element)
-    });
+  var dbcount;
+  Para.count({}, function (err, count) {
+    dbcount = count;
   })
+  // Adding database items to postlist array
+  if (postlist.length < dbcount || postlist.length == 0) {
+    Para.find({}, (err, founditems) => {
+      founditems.forEach(element => {
+        postlist.push(element)
+      });
+    })
+  }
 
   res.render("home", {
     postlist: postlist,
     headpara: homeStartingContent,
   });
+})
+
+app.post("/", function (req, res) {
+
+  // deleting from db
+  Para.deleteOne({ head: req.body.delete }, function (err, result) {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log(result)
+    }
+  })
+  // deleting from array
+  postlist = postlist.filter(item => item.head !== req.body.delete)
+
+  res.redirect("/")
 })
 
 app.get("/blogs/:params", function (req, res) {
@@ -94,7 +115,6 @@ app.get("/blogs/:params", function (req, res) {
   } else {
     res.send("oops !");
   }
-
 })
 
 app.get("/contact", function (req, res) {
@@ -115,7 +135,14 @@ app.get("/compose", function (req, res) {
 })
 
 app.post("/compose", function (req, res) {
-  Para.create({ head: req.body.composeTitle, body: req.body.composePost }, (err, doc) => { })
+  Para.create({ head: req.body.composeTitle, body: req.body.composePost }, (err, doc) => {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log(doc)
+    }
+  })
+  postlist.push({ head: req.body.composeTitle, body: req.body.composePost });
   res.redirect("/");
 })
 
