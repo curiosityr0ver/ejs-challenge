@@ -147,10 +147,10 @@ app.post("/compose", function (req, res) {
 })
 
 var port = 3000;
-// if (process.env.PORT != null || process.env.PORT != "") {
-//   port = process.env.PORT;
-//   console.log(port)
-// }
+if (process.env.PORT != null || process.env.PORT != "") {
+  port = process.env.PORT;
+  console.log(port)
+}
 
 app.listen(port, function () {
   console.log("Server started on port 3000");
