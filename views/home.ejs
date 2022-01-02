@@ -6,7 +6,7 @@
         </i>
 
     </p>
-    <% for (let i=0;i < postlist.length;i++) { %>
+    <% for (let i=0;i < 4;i++) { %>
         <h1>
             <%=postlist[i].head %>
         </h1>
@@ -17,4 +17,4 @@
             <a href=<%="/blogs/" + postlist[i].head %> >readmore</a>
         </p>
         <% } %>
-            <%- include("partials/footer"); %>
+ <%- include("partials/footer"); %>
