@@ -58,22 +58,15 @@ Para.count((err, count) => {
   }
 })
 
-// Adding database items to postlist array
-Para.find({}, (err, founditems) => {
-  founditems.forEach(element => {
-    postlist.push(element)
-  });
-
-})
-
+postlist = [];
 app.get("/", function (req, res) {
 
   // Adding database items to postlist array
+
   Para.find({}, (err, founditems) => {
     founditems.forEach(element => {
       postlist.push(element)
     });
-
   })
 
   res.render("home", {
@@ -96,7 +89,7 @@ app.get("/blogs/:params", function (req, res) {
   }
   if (found >= 0) {
     res.render("blog", { postlist: postlist, index: found + 1 },
-    // console.log(postlist[found+1].id)
+      // console.log(postlist[found+1].id)
     )
   } else {
     res.send("oops !");
